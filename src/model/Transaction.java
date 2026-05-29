@@ -9,7 +9,9 @@ public class Transaction implements FinancialAction {
     protected String note;
     private Category category;
     private boolean deleted;
-
+    public Transaction() {
+    // Bisa dikosongkan atau diisi nilai default
+}
     public Transaction(int userID, int accountID, int transactionID, double amount, Category category, String date, String note) {
         this.userID = userID;
         this.accountID = accountID;
@@ -67,21 +69,20 @@ public class Transaction implements FinancialAction {
             System.out.println("Tanggal      : " + date);
             System.out.println("Catatan      : " + note);
             System.out.println("Periode      : " + startDate + " sampai " + endDate);
+        }else {
+            System.out.println("Transaksi tidak ditemukan atau sudah dihapus.");
         }
     }
 
     @Override
-    public void execute() {
-        System.out.println("Transaksi dijalankan.");
-    }
+public void execute(AccountWallet wallet) {
+    System.out.println("Aksi transaksi dijalankan.");
+}
 
-    @Override
-    public void rollback() {
-        System.out.println("Transaksi dibatalkan.");
-    }
-    public int getUserID() {
-        return userID;
-    }
+@Override
+public void rollback(AccountWallet wallet) {
+    System.out.println("Aksi transaksi dibatalkan.");
+}
 
     public void setUserID(int userID) {
         this.userID = userID;
@@ -154,3 +155,4 @@ public class Transaction implements FinancialAction {
         }
 
 }
+

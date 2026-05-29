@@ -1,7 +1,6 @@
 package src.model;
 
 public interface FinancialAction {
-    void execute();
-    void rollback();
-    
+    void execute(AccountWallet wallet);
+    void rollback(AccountWallet wallet);
 }
