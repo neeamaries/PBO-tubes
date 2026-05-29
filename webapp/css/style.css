@@ -90,3 +90,55 @@ body{
     z-index: 2;
 }
 /* [END] LOGIN PAGE = REGISTER PAGE */
+
+
+/* [START] NAVBAR */
+/* Lingkaran untuk ikon Notifikasi (Lonceng) */
+.icon-circle {
+    width: 42px;
+    height: 42px;
+    background-color: rgba(255, 255, 255, 0.08);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    transition: background-color 0.3s;
+}
+.icon-circle:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+/* Lingkaran untuk ikon User Profil */
+.profile-circle {
+    width: 42px;
+    height: 42px;
+    background-color: #e0e4e3; /* Warna abu-abu terang sesuai gambar */
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #002d26; /* Warna hijau gelap untuk siluet user */
+}
+
+/* Ukuran khusus agar logo tidak kebesaran/pecah di navbar */
+.navbar-logo {
+    height: 25px; /* Kamu bisa mengatur besar/kecil logo di sini */
+    width: auto;
+    object-fit: contain;
+}
+
+.nav-link:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 3rem; 
+}
+
+/* Menghilangkan garis pinggir (border) pada tombol hamburger saat diklik */
+.navbar-toggler:focus {
+    box-shadow: none;
+}
+
+.navbar-custom {
+    border-bottom: 1px solid #ffffff; /* ⚠️ MENGUBAH GARIS MENJADI PUTIH SOLID */
+}
+/* [END] NAVBAR */
