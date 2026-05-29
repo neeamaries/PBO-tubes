@@ -1,5 +1,7 @@
 package src.model;
 
-public class FinancialAction {
+public interface FinancialAction {
+    void execute();
+    void rollback();
     
 }
