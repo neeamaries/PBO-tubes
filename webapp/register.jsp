@@ -28,6 +28,12 @@
 
                         <div class="input-group mb-3">
                             <span class="input-group-text"><i class="bi bi-person-fill"></i></span>
+                            <input type="text" name="regisFullname" class="form-control" placeholder="Fullname"
+                                required>
+                        </div>
+
+                        <div class="input-group mb-3">
+                            <span class="input-group-text"><i class="bi bi-at"></i></span>
                             <input type="text" name="regisUsername" class="form-control" placeholder="Username"
                                 required>
                         </div>
