@@ -1,44 +1,66 @@
 package src.model;
 
 public class Budget {
+    private int budgetID;
+    private int userID;
+    private Integer categoryID;
     private double totalBudget;
-    private double categoryBudget;
+    private Double categoryBudget;
     private double threshold;
+    private String startDate;
+    private String endDate;
 
     public Budget() {
     }
 
-    public Budget(double totalBudget, double categoryBudget, double threshold) {
+    public Budget(int budgetID, int userID, Integer categoryID, double totalBudget, Double categoryBudget,
+                  double threshold, String startDate, String endDate) {
+        this.budgetID = budgetID;
+        this.userID = userID;
+        this.categoryID = categoryID;
         this.totalBudget = totalBudget;
         this.categoryBudget = categoryBudget;
         this.threshold = threshold;
-    }
-
-    public void setBudget(double totalBudget, double categoryBudget, double threshold) {
-        this.totalBudget = totalBudget;
-        this.categoryBudget = categoryBudget;
-        this.threshold = threshold;
+        this.startDate = startDate;
+        this.endDate = endDate;
     }
 
     public boolean checkThreshold(double totalExpense) {
         double batasPeringatan = totalBudget * threshold;
-
         return totalExpense >= batasPeringatan;
     }
 
     public boolean checkCategoryThreshold(double expenseCategoryTotal) {
-        double batasPeringatan = categoryBudget * threshold;
+        if (categoryBudget == null) {
+            return false;
+        }
 
+        double batasPeringatan = categoryBudget * threshold;
         return expenseCategoryTotal >= batasPeringatan;
     }
 
-    public void showBudgetInfo() {
-        System.out.println("=== DETAIL BUDGET ===");
-        System.out.println("Total Budget    : " + totalBudget);
-        System.out.println("Category Budget : " + categoryBudget);
-        System.out.println("Threshold       : " + threshold);
-        System.out.println("Batas Peringatan Total    : " + (totalBudget * threshold));
-        System.out.println("Batas Peringatan Kategori : " + (categoryBudget * threshold));
+    public int getBudgetID() {
+        return budgetID;
+    }
+
+    public void setBudgetID(int budgetID) {
+        this.budgetID = budgetID;
+    }
+
+    public int getUserID() {
+        return userID;
+    }
+
+    public void setUserID(int userID) {
+        this.userID = userID;
+    }
+
+    public Integer getCategoryID() {
+        return categoryID;
+    }
+
+    public void setCategoryID(Integer categoryID) {
+        this.categoryID = categoryID;
     }
 
     public double getTotalBudget() {
@@ -49,11 +71,11 @@ public class Budget {
         this.totalBudget = totalBudget;
     }
 
-    public double getCategoryBudget() {
+    public Double getCategoryBudget() {
         return categoryBudget;
     }
 
-    public void setCategoryBudget(double categoryBudget) {
+    public void setCategoryBudget(Double categoryBudget) {
         this.categoryBudget = categoryBudget;
     }
 
@@ -65,12 +87,33 @@ public class Budget {
         this.threshold = threshold;
     }
 
+    public String getStartDate() {
+        return startDate;
+    }
+
+    public void setStartDate(String startDate) {
+        this.startDate = startDate;
+    }
+
+    public String getEndDate() {
+        return endDate;
+    }
+
+    public void setEndDate(String endDate) {
+        this.endDate = endDate;
+    }
+
     @Override
     public String toString() {
         return "Budget{" +
-                "totalBudget=" + totalBudget +
+                "budgetID=" + budgetID +
+                ", userID=" + userID +
+                ", categoryID=" + categoryID +
+                ", totalBudget=" + totalBudget +
                 ", categoryBudget=" + categoryBudget +
                 ", threshold=" + threshold +
+                ", startDate='" + startDate + '\'' +
+                ", endDate='" + endDate + '\'' +
                 '}';
     }
 }

@@ -1,3 +1,5 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+
 <!DOCTYPE html>
 <html lang="id">
 
@@ -24,18 +26,28 @@
                 <div class="login-container text-center">
                     <h1 class="login-title">SIGN UP</h1>
 
-                    <form>
+                    <% if (request.getAttribute("errorMessage") != null) { %>
+                        <div class="alert alert-danger">
+                            <%= request.getAttribute("errorMessage") %>
+                        </div>
+                    <% } %>
+
+                    <% if (request.getAttribute("successMessage") != null) { %>
+                        <div class="alert alert-success">
+                            <%= request.getAttribute("successMessage") %>
+                        </div>
+                    <% } %>
+
+                    <form action="${pageContext.request.contextPath}/auth?action=register" method="post">
 
                         <div class="input-group mb-3">
                             <span class="input-group-text"><i class="bi bi-person-fill"></i></span>
-                            <input type="text" name="regisFullname" class="form-control" placeholder="Fullname"
-                                required>
+                            <input type="text" name="regisFullname" class="form-control" placeholder="Fullname" required>
                         </div>
 
                         <div class="input-group mb-3">
                             <span class="input-group-text"><i class="bi bi-at"></i></span>
-                            <input type="text" name="regisUsername" class="form-control" placeholder="Username"
-                                required>
+                            <input type="text" name="regisUsername" class="form-control" placeholder="Username" required>
                         </div>
 
                         <div class="input-group mb-3">
@@ -45,8 +57,7 @@
 
                         <div class="input-group mb-3">
                             <span class="input-group-text"><i class="bi bi-key-fill"></i></span>
-                            <input type="password" name="regisPassword" class="form-control" placeholder="Password"
-                                required>
+                            <input type="password" name="regisPassword" class="form-control" placeholder="Password" required>
                         </div>
 
                         <div class="input-group mb-4">

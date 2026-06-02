@@ -1,36 +1,71 @@
 package src.model;
 
 public class Notification {
+    private int notificationID;
+    private int userID;
+    private int budgetID;
     private String message;
-    private String date;
+    private String notificationDate;
 
     public Notification() {
     }
 
-    public Notification(String message, String date) {
+    public Notification(int notificationID, int userID, int budgetID, String message, String notificationDate) {
+        this.notificationID = notificationID;
+        this.userID = userID;
+        this.budgetID = budgetID;
         this.message = message;
-        this.date = date;
+        this.notificationDate = notificationDate;
     }
 
-    public void sendNotification() {
-        System.out.println("=== NOTIFIKASI ===");
-        System.out.println("Tanggal : " + date);
-        System.out.println("Pesan   : " + message);
+    public int getNotificationID() {
+        return notificationID;
+    }
+
+    public void setNotificationID(int notificationID) {
+        this.notificationID = notificationID;
+    }
+
+    public int getUserID() {
+        return userID;
+    }
+
+    public void setUserID(int userID) {
+        this.userID = userID;
+    }
+
+    public int getBudgetID() {
+        return budgetID;
+    }
+
+    public void setBudgetID(int budgetID) {
+        this.budgetID = budgetID;
     }
 
     public String getMessage() {
         return message;
     }
 
-    public String getDate() {
-        return date;
-    }
-
     public void setMessage(String message) {
         this.message = message;
     }
 
-    public void setDate(String date) {
-        this.date = date;
+    public String getNotificationDate() {
+        return notificationDate;
+    }
+
+    public void setNotificationDate(String notificationDate) {
+        this.notificationDate = notificationDate;
+    }
+
+    @Override
+    public String toString() {
+        return "Notification{" +
+                "notificationID=" + notificationID +
+                ", userID=" + userID +
+                ", budgetID=" + budgetID +
+                ", message='" + message + '\'' +
+                ", notificationDate='" + notificationDate + '\'' +
+                '}';
     }
 }

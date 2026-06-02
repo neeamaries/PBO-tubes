@@ -1,23 +1,17 @@
 package src.model;
 
-public class EWallet extends AccountWallet{
+public class EWallet extends AccountWallet {
     private String providerName;
+    private String accountNumber;
 
     public EWallet() {
         super();
     }
 
-    public EWallet(int accountID, String accountName, double balance, String providerName) {
-        super(accountID, accountName, balance);
+    public EWallet(int accountID, int userID, String accountName, double balance, String providerName, String accountNumber) {
+        super(accountID, userID, accountName, balance);
         this.providerName = providerName;
-    }
-
-    public double calculateBalance(String providerName) {
-        if (this.providerName.equalsIgnoreCase(providerName)) {
-            return getBalance();
-        }
-
-        return 0;
+        this.accountNumber = accountNumber;
     }
 
     @Override
@@ -33,13 +27,23 @@ public class EWallet extends AccountWallet{
         this.providerName = providerName;
     }
 
+    public String getAccountNumber() {
+        return accountNumber;
+    }
+
+    public void setAccountNumber(String accountNumber) {
+        this.accountNumber = accountNumber;
+    }
+
     @Override
     public String toString() {
         return "EWallet{" +
                 "accountID=" + getAccountID() +
+                ", userID=" + getUserID() +
                 ", accountName='" + getAccountName() + '\'' +
                 ", balance=" + getBalance() +
                 ", providerName='" + providerName + '\'' +
+                ", accountNumber='" + accountNumber + '\'' +
                 '}';
     }
 }

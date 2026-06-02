@@ -1,88 +1,68 @@
 package src.model;
 
-public class Transaction implements FinancialAction {
-    protected int userID;
-    protected int accountID;
-    protected int transactionID;
-    protected double amount;
-    protected String date;
-    protected String note;
+public class Transaction {
+    private int transactionID;
+    private int userID;
+    private int accountID;
+    private int categoryID;
+    private String transactionName;
+    private double amount;
+    private String transactionType;
+    private String transactionDate;
+    private String note;
+
     private Category category;
-    private boolean deleted;
+
     public Transaction() {
-    // Bisa dikosongkan atau diisi nilai default
-}
-    public Transaction(int userID, int accountID, int transactionID, double amount, Category category, String date, String note) {
+    }
+
+    public Transaction(int transactionID, int userID, int accountID, int categoryID,
+                       String transactionName, double amount, String transactionType,
+                       String transactionDate, String note) {
+        this.transactionID = transactionID;
         this.userID = userID;
         this.accountID = accountID;
+        this.categoryID = categoryID;
+        this.transactionName = transactionName;
+        this.amount = amount;
+        this.transactionType = transactionType;
+        this.transactionDate = transactionDate;
+        this.note = note;
+    }
+
+    public Transaction(int transactionID, int userID, int accountID, int categoryID,
+                       String transactionName, double amount, String transactionType,
+                       String transactionDate, String note, Category category) {
         this.transactionID = transactionID;
+        this.userID = userID;
+        this.accountID = accountID;
+        this.categoryID = categoryID;
+        this.transactionName = transactionName;
         this.amount = amount;
-        this.category = category;
-        this.date = date;
+        this.transactionType = transactionType;
+        this.transactionDate = transactionDate;
         this.note = note;
-        this.deleted = false;
-    }
-    public void createTransaction() {
-        System.out.println("ransaksi berhasil dibuat.");
-        System.out.println("ID Transaksi : " + transactionID);
-        System.out.println("ID User      : " + userID);
-        System.out.println("ID Account   : " + accountID);
-        System.out.println("Jumlah       : " + amount);
-        System.out.println("Kategori     : " + category.getName());
-        System.out.println("Tanggal      : " + date);
-        System.out.println("Catatan      : " + note);
-    }
-
-    public void setCategory(Category cat) {
-        this.category = cat;
-    }
-
-    public void deleteTransaction() {
-        this.deleted = true;
-        System.out.println("Transaksi dengan ID " + transactionID + " berhasil dihapus.");
-    }
-
-    public void updateTransaction(double amount, Category category, String date, String note) {
-        if (this.deleted) {
-            System.out.println("Gagal update: Transaksi ini sudah dihapus!");
-            return;
-        }
-        this.amount = amount;
         this.category = category;
-        this.date = date;
-        this.note = note;
-
-        System.out.println("Transaksi berhasil diperbarui.");
-    }
-    public boolean isDeleted() {
-        return deleted;
     }
 
-    public void showTransaction(int accountID, String startDate, String endDate) {
-        if (this.accountID == accountID && !deleted) {
-            System.out.println("=== Detail Transaksi ===");
-            System.out.println("ID Transaksi : " + transactionID);
-            System.out.println("ID User      : " + userID);
-            System.out.println("ID Account   : " + this.accountID);
-            System.out.println("Jumlah       : " + amount);
-            System.out.println("Kategori     : " + getCategoryName());
-            System.out.println("Tanggal      : " + date);
-            System.out.println("Catatan      : " + note);
-            System.out.println("Periode      : " + startDate + " sampai " + endDate);
-        }else {
-            System.out.println("Transaksi tidak ditemukan atau sudah dihapus.");
+    public String getCategoryName() {
+        if (category != null) {
+            return category.getName();
         }
+        return "Tidak ada kategori";
     }
 
-    @Override
-public void execute(AccountWallet wallet) {
-    System.out.println("Aksi transaksi dijalankan.");
-}
+    public int getTransactionID() {
+        return transactionID;
+    }
 
-@Override
-public void rollback(AccountWallet wallet) {
-    System.out.println("Aksi transaksi dibatalkan.");
-}
+    public void setTransactionID(int transactionID) {
+        this.transactionID = transactionID;
+    }
+
+    public int getUserID() {
+        return userID;
+    }
 
     public void setUserID(int userID) {
         this.userID = userID;
@@ -96,12 +76,20 @@ public void rollback(AccountWallet wallet) {
         this.accountID = accountID;
     }
 
-    public int getTransactionID() {
-        return transactionID;
+    public int getCategoryID() {
+        return categoryID;
     }
 
-    public void setTransactionID(int transactionID) {
-        this.transactionID = transactionID;
+    public void setCategoryID(int categoryID) {
+        this.categoryID = categoryID;
+    }
+
+    public String getTransactionName() {
+        return transactionName;
+    }
+
+    public void setTransactionName(String transactionName) {
+        this.transactionName = transactionName;
     }
 
     public double getAmount() {
@@ -112,24 +100,20 @@ public void rollback(AccountWallet wallet) {
         this.amount = amount;
     }
 
-    public Category getCategory() {
-        return category;
+    public String getTransactionType() {
+        return transactionType;
     }
 
-    public String getCategoryName() {
-        if (category != null) {
-            return category.getName();
-        }
-
-        return "Tidak ada kategori";
+    public void setTransactionType(String transactionType) {
+        this.transactionType = transactionType;
     }
 
-    public String getDate() {
-        return date;
+    public String getTransactionDate() {
+        return transactionDate;
     }
 
-    public void setDate(String date) {
-        this.date = date;
+    public void setTransactionDate(String transactionDate) {
+        this.transactionDate = transactionDate;
     }
 
     public String getNote() {
@@ -139,20 +123,32 @@ public void rollback(AccountWallet wallet) {
     public void setNote(String note) {
         this.note = note;
     }
-    
+
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
+
+        if (category != null) {
+            this.categoryID = category.getCategoryID();
+        }
+    }
+
     @Override
     public String toString() {
         return "Transaction{" +
-            "userID=" + userID +
-            ", accountID=" + accountID +
-            ", transactionID=" + transactionID +
-            ", amount=" + amount +
-            ", category=" + getCategoryName() +
-            ", date='" + date + '\'' +
-            ", note='" + note + '\'' +
-            ", deleted=" + deleted +
-            '}';
-        }
-
+                "transactionID=" + transactionID +
+                ", userID=" + userID +
+                ", accountID=" + accountID +
+                ", categoryID=" + categoryID +
+                ", transactionName='" + transactionName + '\'' +
+                ", amount=" + amount +
+                ", transactionType='" + transactionType + '\'' +
+                ", transactionDate='" + transactionDate + '\'' +
+                ", note='" + note + '\'' +
+                ", category=" + getCategoryName() +
+                '}';
+    }
 }
-

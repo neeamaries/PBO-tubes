@@ -1,116 +1,105 @@
 package src.model;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 public class Analysis {
+    private int analysisID;
+    private int userID;
+    private String startDate;
+    private String endDate;
     private double totalExpense;
-    private List<Expense> expenses;
+    private Integer largestCategoryID;
+    private double averageExpense;
+    private String generatedAt;
 
     public Analysis() {
     }
 
-    public Analysis(List<Expense> expenses) {
-        this.expenses = expenses;
-        this.totalExpense = calculateTotalExpense();
+    public Analysis(int analysisID, int userID, String startDate, String endDate, double totalExpense,
+                    Integer largestCategoryID, double averageExpense, String generatedAt) {
+        this.analysisID = analysisID;
+        this.userID = userID;
+        this.startDate = startDate;
+        this.endDate = endDate;
+        this.totalExpense = totalExpense;
+        this.largestCategoryID = largestCategoryID;
+        this.averageExpense = averageExpense;
+        this.generatedAt = generatedAt;
     }
 
-    private double calculateTotalExpense() {
-        double total = 0;
-
-        if (expenses == null) {
-            return total;
-        }
-
-        for (Expense expense : expenses) {
-            total += expense.getAmount();
-        }
-
-        return total;
+    public int getAnalysisID() {
+        return analysisID;
     }
 
-    public String largestCategory() {
-        if (expenses == null || expenses.isEmpty()) {
-            return "Belum ada pengeluaran.";
-        }
-
-        Map<String, Double> categoryTotals = new HashMap<>();
-
-        for (Expense expense : expenses) {
-            String categoryName = expense.getCategoryName();
-
-            double currentTotal = categoryTotals.getOrDefault(categoryName, 0.0);
-            categoryTotals.put(categoryName, currentTotal + expense.getAmount());
-        }
-
-        String largestCategory = "";
-        double largestAmount = 0;
-
-        for (String category : categoryTotals.keySet()) {
-            double amount = categoryTotals.get(category);
-
-            if (amount > largestAmount) {
-                largestAmount = amount;
-                largestCategory = category;
-            }
-        }
-
-        return largestCategory;
+    public void setAnalysisID(int analysisID) {
+        this.analysisID = analysisID;
     }
 
-    public double averageExpend() {
-        if (expenses == null || expenses.isEmpty()) {
-            return 0;
-        }
-
-        return calculateTotalExpense() / expenses.size();
+    public int getUserID() {
+        return userID;
     }
 
-    public double categoryPercentage(String categoryName) {
-        double total = calculateTotalExpense();
+    public void setUserID(int userID) {
+        this.userID = userID;
+    }
 
-        if (total == 0) {
-            return 0;
-        }
+    public String getStartDate() {
+        return startDate;
+    }
 
-        double categoryTotal = 0;
+    public void setStartDate(String startDate) {
+        this.startDate = startDate;
+    }
 
-        for (Expense expense : expenses) {
-            if (expense.getCategoryName().equalsIgnoreCase(categoryName)) {
-                categoryTotal += expense.getAmount();
-            }
-        }
+    public String getEndDate() {
+        return endDate;
+    }
 
-        return (categoryTotal / total) * 100;
+    public void setEndDate(String endDate) {
+        this.endDate = endDate;
     }
 
     public double getTotalExpense() {
-        this.totalExpense = calculateTotalExpense();
         return totalExpense;
     }
 
-    public void setExpenses(List<Expense> expenses) {
-        this.expenses = expenses;
-        this.totalExpense = calculateTotalExpense();
+    public void setTotalExpense(double totalExpense) {
+        this.totalExpense = totalExpense;
     }
 
-    public List<Expense> getExpenses() {
-        return expenses;
-    }
-    //tambahan
-    public double totalByCategory(String categoryName) {
-    double categoryTotal = 0;
-
-    if (expenses == null) {
-        return 0;
+    public Integer getLargestCategoryID() {
+        return largestCategoryID;
     }
 
-    for (Expense expense : expenses) {
-        if (expense.getCategoryName().equalsIgnoreCase(categoryName)) {
-            categoryTotal += expense.getAmount();
-        }
+    public void setLargestCategoryID(Integer largestCategoryID) {
+        this.largestCategoryID = largestCategoryID;
     }
 
-    return categoryTotal;
-}
+    public double getAverageExpense() {
+        return averageExpense;
+    }
+
+    public void setAverageExpense(double averageExpense) {
+        this.averageExpense = averageExpense;
+    }
+
+    public String getGeneratedAt() {
+        return generatedAt;
+    }
+
+    public void setGeneratedAt(String generatedAt) {
+        this.generatedAt = generatedAt;
+    }
+
+    @Override
+    public String toString() {
+        return "Analysis{" +
+                "analysisID=" + analysisID +
+                ", userID=" + userID +
+                ", startDate='" + startDate + '\'' +
+                ", endDate='" + endDate + '\'' +
+                ", totalExpense=" + totalExpense +
+                ", largestCategoryID=" + largestCategoryID +
+                ", averageExpense=" + averageExpense +
+                ", generatedAt='" + generatedAt + '\'' +
+                '}';
+    }
 }

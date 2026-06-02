@@ -1,40 +1,35 @@
 package src.model;
 
-public class Expense extends Transaction {
+public class Expense extends Transaction implements FinancialAction {
     private int expenseID;
 
     public Expense() {
         super();
+        setTransactionType("expense");
     }
 
-    public Expense(int expenseID, int userID, int accountID, int transactionID, double amount, Category category, String date, String note) {
-        super(userID, accountID, transactionID, amount, category, date, note);
+    public Expense(int expenseID, int transactionID, int userID, int accountID, int categoryID,
+                   String transactionName, double amount, String transactionDate, String note) {
+        super(transactionID, userID, accountID, categoryID, transactionName, amount, "expense", transactionDate, note);
         this.expenseID = expenseID;
     }
-
-    public String getDetails() {
-        return "Expense{" +
-                "expenseID=" + expenseID +
-                ", transactionID=" + transactionID +
-                ", amount=" + amount +
-                ", category=" + getCategoryName() +
-                ", date='" + date + '\'' +
-                ", note='" + note + '\'' +
-                '}';
+    public Expense(int expenseID, int transactionID, int userID, int accountID, int categoryID,
+                  String transactionName, double amount, String transactionDate, String note, Category category) {
+        super(transactionID, userID, accountID, categoryID, transactionName, amount, "Expense", transactionDate, note, category);
+        this.expenseID = expenseID;
     }
-
     @Override
     public void execute(AccountWallet wallet) {
-    if (wallet != null) {
-        wallet.updateBalance(-amount);
-    }
+        if (wallet != null) {
+            wallet.updateBalance(-getAmount());
+        }
     }
 
     @Override
     public void rollback(AccountWallet wallet) {
-    if (wallet != null) {
-        wallet.updateBalance(amount);
-    }
+        if (wallet != null) {
+            wallet.updateBalance(getAmount());
+        }
     }
 
     public int getExpenseID() {
@@ -47,6 +42,17 @@ public class Expense extends Transaction {
 
     @Override
     public String toString() {
-        return getDetails();
+        return "Expense{" +
+                "expenseID=" + expenseID +
+                ", transactionID=" + getTransactionID() +
+                ", userID=" + getUserID() +
+                ", accountID=" + getAccountID() +
+                ", categoryID=" + getCategoryID() +
+                ", transactionName='" + getTransactionName() + '\'' +
+                ", amount=" + getAmount() +
+                ", transactionType='" + getTransactionType() + '\'' +
+                ", transactionDate='" + getTransactionDate() + '\'' +
+                ", note='" + getNote() + '\'' +
+                '}';
     }
 }

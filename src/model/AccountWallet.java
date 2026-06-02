@@ -1,15 +1,17 @@
 package src.model;
 
 public class AccountWallet {
-    protected int accountID;
+    private int accountID;
+    private int userID;
     private String accountName;
     private double balance;
 
     public AccountWallet() {
     }
 
-    public AccountWallet(int accountID, String accountName, double balance) {
+    public AccountWallet(int accountID, int userID, String accountName, double balance) {
         this.accountID = accountID;
+        this.userID = userID;
         this.accountName = accountName;
         this.balance = balance;
     }
@@ -30,6 +32,14 @@ public class AccountWallet {
         this.accountID = accountID;
     }
 
+    public int getUserID() {
+        return userID;
+    }
+
+    public void setUserID(int userID) {
+        this.userID = userID;
+    }
+
     public String getAccountName() {
         return accountName;
     }
@@ -46,17 +56,11 @@ public class AccountWallet {
         this.balance = balance;
     }
 
-    public void showWallet() {
-        System.out.println("=== DETAIL DOMPET ===");
-        System.out.println("ID Dompet   : " + accountID);
-        System.out.println("Nama Dompet : " + accountName);
-        System.out.println("Saldo       : " + balance);
-    }
-
     @Override
     public String toString() {
         return "AccountWallet{" +
                 "accountID=" + accountID +
+                ", userID=" + userID +
                 ", accountName='" + accountName + '\'' +
                 ", balance=" + balance +
                 '}';

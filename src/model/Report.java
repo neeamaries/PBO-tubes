@@ -1,110 +1,128 @@
 package src.model;
-import java.time.LocalDate;
-import java.util.List;
 
 public class Report {
+    private int reportID;
+    private int userID;
+    private int accountID;
+    private String reportType;
     private String startDate;
     private String endDate;
-    private List<Transaction> transactions;
+    private double totalIncome;
+    private double totalExpense;
+    private double endingBalance;
+    private String generatedAt;
 
     public Report() {
     }
 
-    public Report(String startDate, String endDate, List<Transaction> transactions) {
+    public Report(int reportID, int userID, int accountID, String reportType,
+                  String startDate, String endDate, double totalIncome,
+                  double totalExpense, double endingBalance, String generatedAt) {
+        this.reportID = reportID;
+        this.userID = userID;
+        this.accountID = accountID;
+        this.reportType = reportType;
         this.startDate = startDate;
         this.endDate = endDate;
-        this.transactions = transactions;
+        this.totalIncome = totalIncome;
+        this.totalExpense = totalExpense;
+        this.endingBalance = endingBalance;
+        this.generatedAt = generatedAt;
     }
 
-    public void generateDaily(int accountID) {
-        System.out.println("=== LAPORAN HARIAN ===");
-        generateReport(accountID, startDate, startDate);
+    public int getReportID() {
+        return reportID;
     }
 
-    public void generateWeekly(int accountID) {
-        System.out.println("=== LAPORAN MINGGUAN ===");
-
-        LocalDate start = LocalDate.parse(startDate);
-        LocalDate end = start.plusDays(6);
-
-        generateReport(accountID, start.toString(), end.toString());
+    public void setReportID(int reportID) {
+        this.reportID = reportID;
     }
 
-    public void generateMonthly(int accountID) {
-        System.out.println("=== LAPORAN BULANAN ===");
-
-        LocalDate start = LocalDate.parse(startDate);
-        LocalDate end = start.withDayOfMonth(start.lengthOfMonth());
-
-        generateReport(accountID, start.toString(), end.toString());
+    public int getUserID() {
+        return userID;
     }
 
-    private void generateReport(int accountID, String start, String end) {
-        if (transactions == null || transactions.isEmpty()) {
-            System.out.println("Belum ada transaksi.");
-            return;
-        }
+    public void setUserID(int userID) {
+        this.userID = userID;
+    }
 
-        double totalIncome = 0;
-        double totalExpense = 0;
-        boolean found = false;
+    public int getAccountID() {
+        return accountID;
+    }
 
-        LocalDate startLocalDate = LocalDate.parse(start);
-        LocalDate endLocalDate = LocalDate.parse(end);
+    public void setAccountID(int accountID) {
+        this.accountID = accountID;
+    }
 
-        for (Transaction transaction : transactions) {
-            LocalDate transactionDate = LocalDate.parse(transaction.getDate());
+    public String getReportType() {
+        return reportType;
+    }
 
-            boolean sameAccount = transaction.getAccountID() == accountID;
-            boolean inRange = !transactionDate.isBefore(startLocalDate)
-                    && !transactionDate.isAfter(endLocalDate);
-
-            if (sameAccount && inRange && !transaction.isDeleted()) {
-                System.out.println(transaction);
-
-                if (transaction instanceof Income) {
-                    totalIncome += transaction.getAmount();
-                } else if (transaction instanceof Expense) {
-                    totalExpense += transaction.getAmount();
-                }
-
-                found = true;
-
-            }
-        }
-
-       if (!found) {
-            System.out.println("Tidak ada transaksi pada periode tersebut.");
-        } else {
-            double netTotal = totalIncome - totalExpense;
-
-            System.out.println("Total Income  : " + totalIncome);
-            System.out.println("Total Expense : " + totalExpense);
-            System.out.println("Saldo Bersih masuk ke total walllet  : " + netTotal);
-        }
+    public void setReportType(String reportType) {
+        this.reportType = reportType;
     }
 
     public String getStartDate() {
         return startDate;
     }
 
-    public String getEndDate() {
-        return endDate;
-    }
-
     public void setStartDate(String startDate) {
         this.startDate = startDate;
+    }
+
+    public String getEndDate() {
+        return endDate;
     }
 
     public void setEndDate(String endDate) {
         this.endDate = endDate;
     }
 
-    public List<Transaction> getTransactions() {
-        return transactions;
+    public double getTotalIncome() {
+        return totalIncome;
     }
 
-    public void setTransactions(List<Transaction> transactions) {
-        this.transactions = transactions;
+    public void setTotalIncome(double totalIncome) {
+        this.totalIncome = totalIncome;
+    }
+
+    public double getTotalExpense() {
+        return totalExpense;
+    }
+
+    public void setTotalExpense(double totalExpense) {
+        this.totalExpense = totalExpense;
+    }
+
+    public double getEndingBalance() {
+        return endingBalance;
+    }
+
+    public void setEndingBalance(double endingBalance) {
+        this.endingBalance = endingBalance;
+    }
+
+    public String getGeneratedAt() {
+        return generatedAt;
+    }
+
+    public void setGeneratedAt(String generatedAt) {
+        this.generatedAt = generatedAt;
+    }
+
+    @Override
+    public String toString() {
+        return "Report{" +
+                "reportID=" + reportID +
+                ", userID=" + userID +
+                ", accountID=" + accountID +
+                ", reportType='" + reportType + '\'' +
+                ", startDate='" + startDate + '\'' +
+                ", endDate='" + endDate + '\'' +
+                ", totalIncome=" + totalIncome +
+                ", totalExpense=" + totalExpense +
+                ", endingBalance=" + endingBalance +
+                ", generatedAt='" + generatedAt + '\'' +
+                '}';
     }
 }

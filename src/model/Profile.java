@@ -1,6 +1,8 @@
 package src.model;
 
 public class Profile {
+    private int profileID;
+    private int userID;
     private String fullName;
     private String phoneNumber;
     private String address;
@@ -8,7 +10,9 @@ public class Profile {
     public Profile() {
     }
 
-    public Profile(String fullName, String phoneNumber, String address) {
+    public Profile(int profileID, int userID, String fullName, String phoneNumber, String address) {
+        this.profileID = profileID;
+        this.userID = userID;
         this.fullName = fullName;
         this.phoneNumber = phoneNumber;
         this.address = address;
@@ -20,37 +24,40 @@ public class Profile {
         this.address = address;
     }
 
-    public void displayProfile() {
-        System.out.println("=== DETAIL PROFILE ===");
-        System.out.println("Nama Lengkap : " + fullName);
-        System.out.println("No HP        : " + phoneNumber);
-        System.out.println("Alamat       : " + address);
+    public int getProfileID() {
+        return profileID;
     }
 
-    public String getProfileInfo() {
-        return "Nama Lengkap: " + fullName +
-                ", No HP: " + phoneNumber +
-                ", Alamat: " + address;
+    public void setProfileID(int profileID) {
+        this.profileID = profileID;
+    }
+
+    public int getUserID() {
+        return userID;
+    }
+
+    public void setUserID(int userID) {
+        this.userID = userID;
     }
 
     public String getFullName() {
         return fullName;
     }
 
-    public String getPhoneNumber() {
-        return phoneNumber;
-    }
-
-    public String getAddress() {
-        return address;
-    }
-
     public void setFullName(String fullName) {
         this.fullName = fullName;
     }
 
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
+    }
+
+    public String getAddress() {
+        return address;
     }
 
     public void setAddress(String address) {
@@ -59,7 +66,12 @@ public class Profile {
 
     @Override
     public String toString() {
-        return getProfileInfo();
+        return "Profile{" +
+                "profileID=" + profileID +
+                ", userID=" + userID +
+                ", fullName='" + fullName + '\'' +
+                ", phoneNumber='" + phoneNumber + '\'' +
+                ", address='" + address + '\'' +
+                '}';
     }
-    // constructor, getter, setter, dan method updateProfile/displayProfile
 }
