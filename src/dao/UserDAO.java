@@ -168,6 +168,7 @@ public class UserDAO {
 
         return users;
     }
+    
 
     private User mapResultSetToUser(ResultSet rs) throws SQLException {
         return new User(

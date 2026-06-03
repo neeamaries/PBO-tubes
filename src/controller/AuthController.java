@@ -24,19 +24,22 @@ public class AuthController extends HttpServlet {
         profileDAO = new ProfileDAO();
     }
 
-    @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        
-        String action = request.getParameter("action");
+@Override
+protected void doGet(HttpServletRequest request, HttpServletResponse response)
+        throws ServletException, IOException {
+    
+    String action = request.getParameter("action");
 
-        if ("logout".equals(action)) {
-            logout(request, response);
-        } else {
-            response.sendRedirect("login.jsp");
-        }
+    if ("logout".equals(action)) {
+        logout(request, response);
+    } else if ("login".equals(action)) {
+        response.sendRedirect(request.getContextPath() + "/login.jsp");
+    } else if ("register".equals(action)) {
+        response.sendRedirect(request.getContextPath() + "/register.jsp");
+    } else {
+        response.sendRedirect(request.getContextPath() + "/login.jsp");
     }
-
+}
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -48,7 +51,7 @@ public class AuthController extends HttpServlet {
         } else if ("login".equals(action)) {
             login(request, response);
         } else {
-            response.sendRedirect("login.jsp");
+            response.sendRedirect("/login.jsp");
         }
     }
 
@@ -63,7 +66,7 @@ public class AuthController extends HttpServlet {
 
         if (!password.equals(confirmPassword)) {
             request.setAttribute("errorMessage", "Password dan Confirm Password tidak sama.");
-            request.getRequestDispatcher("register.jsp").forward(request, response);
+            request.getRequestDispatcher("/register.jsp").forward(request, response);
             return;
         }
         System.out.println("=== DEBUG AuthController REGISTER ===");
@@ -94,28 +97,42 @@ System.out.println("Confirm  : " + confirmPassword);
         profileDAO.insertProfile(profile);
 
         request.setAttribute("successMessage", "Registrasi berhasil. Silakan login.");
-        request.getRequestDispatcher("login.jsp").forward(request, response);
+        request.getRequestDispatcher("/login.jsp").forward(request, response);
     }
 
     private void login(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+        throws ServletException, IOException {
 
-        String emailOrUsername = request.getParameter("emailOrUsername");
-        String password = request.getParameter("password");
+    String emailOrUsername = request.getParameter("emailOrUsername");
+    String password = request.getParameter("password");
 
-        User user = userDAO.login(emailOrUsername, password);
-
-        if (user != null) {
-            HttpSession session = request.getSession();
-            session.setAttribute("user", user);
-            session.setAttribute("userID", user.getUserID());
-
-            response.sendRedirect("dashboard.jsp");
-        } else {
-            request.setAttribute("errorMessage", "Login gagal. Username/email atau password salah.");
-            request.getRequestDispatcher("login.jsp").forward(request, response);
-        }
+    if (emailOrUsername != null) {
+        emailOrUsername = emailOrUsername.trim();
     }
+
+    if (password != null) {
+        password = password.trim();
+    }
+
+    System.out.println("=== DEBUG LOGIN ===");
+    System.out.println("Input login : " + emailOrUsername);
+    System.out.println("Password    : " + password);
+
+    User user = userDAO.login(emailOrUsername, password);
+
+    System.out.println("Login result: " + user);
+
+    if (user != null) {
+        HttpSession session = request.getSession();
+        session.setAttribute("user", user);
+        session.setAttribute("userID", user.getUserID());
+
+        response.sendRedirect(request.getContextPath() + "/dashboard.jsp");
+    } else {
+        request.setAttribute("errorMessage", "Login gagal. Username/email atau password salah.");
+        request.getRequestDispatcher("/login.jsp").forward(request, response);
+    }
+}
 
     private void logout(HttpServletRequest request, HttpServletResponse response)
             throws IOException {
@@ -126,6 +143,6 @@ System.out.println("Confirm  : " + confirmPassword);
             session.invalidate();
         }
 
-        response.sendRedirect("login.jsp");
+        response.sendRedirect("/login.jsp");
     }
 }
