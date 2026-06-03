@@ -2,7 +2,7 @@
     <div class="container">
 
         <a class="navbar-brand" href="dashboard.jsp">
-            <img src="${pageContext.request.contextPath}/images/FLogo.png" class="navbar-logo" alt="FinTrack Logo">
+            <img src="${pageContext.request.contextPath}/webapp/images/FLogo.png" class="navbar-logo" alt="FinTrack Logo">
         </a>
 
         <button class="navbar-toggler text-white border-0" type="button" data-bs-toggle="collapse"

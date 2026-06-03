@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 // Import class Model yang kita buat tadi
 import com.fintrack.model.Transaction;
 
-@WebServlet("/navbar")
+@WebServlet("/")
 public class TransactionServlet extends HttpServlet {
 
     @Override
