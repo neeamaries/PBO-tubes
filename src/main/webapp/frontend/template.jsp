@@ -7,11 +7,10 @@
         <title>FinTrack - Template</title>
 
         
-        <link rel="icon" type="image/png" href="${pageContext.request.contextPath}/images/favicon.png">
+        <link rel="icon" type="image/png" href="/${pageContext.request.contextPath}/images/favicon.png">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
-        <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;600;700&display=swap"
-            rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;600;700&display=swap" rel="stylesheet">
         <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/style.css">
     </head>
 
@@ -23,7 +22,7 @@
                 <div class="d-flex justify-content-between align-items-end">
                     <div>
                         <p class="mb-1 text-light-teal">Good Morning,</p>
-                        <h2 class="fw-bold mb-0 fs-1">Test</h2>
+                        <h2 class="fw-bold mb-0 fs-1">AAA</h2>
                     </div>
                     <div class="d-flex align-items-center gap-2">
                         <button class="btn btn-date d-flex align-items-center gap-2">

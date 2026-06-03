@@ -22,7 +22,7 @@ public class TestingServlet extends HttpServlet {
             throws ServletException, IOException {
 
         // UBAH FILE JSP-NYA SAJA (From BE)
-        request.getRequestDispatcher("WEB-INF/views/template.jsp").forward(request, response);
+        request.getRequestDispatcher("/WEB-INF/views/template.jsp").forward(request, response);
 
     }
 
