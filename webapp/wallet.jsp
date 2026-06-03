@@ -81,56 +81,6 @@
                         <h4 class="fw-bold text-dark mb-0">Rp 10.000.000</h4>
                     </div>
                 </div>
-                <div class="col-12 col-md-6 col-lg-4">
-                    <div class="card fintrack-card theme-lime p-4 h-100">
-                        <div class="d-flex justify-content-between align-items-start mb-3">
-                            <div class="d-flex align-items-center gap-2">
-                                <iconify-icon icon="solar:smartphone-bold-duotone" width="28"
-                                    class="text-dark-teal"></iconify-icon>
-                                <span class="badge bg-light text-dark border">E-Wallet (GoPay)</span>
-                            </div>
-                            <div class="dropdown">
-                                <button class="btn btn-sm border-0" type="button" data-bs-toggle="dropdown">
-                                    <iconify-icon icon="solar:menu-dots-bold" width="20"></iconify-icon>
-                                </button>
-                                <ul class="dropdown-menu dropdown-menu-end shadow border-0">
-                                    <li><a class="dropdown-item" href="#"><iconify-icon icon="solar:pen-bold"
-                                                class="me-2"></iconify-icon>Manage</a></li>
-                                    <li><a class="dropdown-item text-danger" href="#"><iconify-icon
-                                                icon="solar:trash-bin-trash-bold" class="me-2"></iconify-icon>Delete</a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                        <h5 class="fw-bold text-dark-teal mb-1">Tabungan Jajan</h5>
-                        <h4 class="fw-bold text-dark mb-0">Rp 10.000.000</h4>
-                    </div>
-                </div>
-                <div class="col-12 col-md-6 col-lg-4">
-                    <div class="card fintrack-card theme-lime p-4 h-100">
-                        <div class="d-flex justify-content-between align-items-start mb-3">
-                            <div class="d-flex align-items-center gap-2">
-                                <iconify-icon icon="solar:smartphone-bold-duotone" width="28"
-                                    class="text-dark-teal"></iconify-icon>
-                                <span class="badge bg-light text-dark border">E-Wallet (GoPay)</span>
-                            </div>
-                            <div class="dropdown">
-                                <button class="btn btn-sm border-0" type="button" data-bs-toggle="dropdown">
-                                    <iconify-icon icon="solar:menu-dots-bold" width="20"></iconify-icon>
-                                </button>
-                                <ul class="dropdown-menu dropdown-menu-end shadow border-0">
-                                    <li><a class="dropdown-item" href="#"><iconify-icon icon="solar:pen-bold"
-                                                class="me-2"></iconify-icon>Manage</a></li>
-                                    <li><a class="dropdown-item text-danger" href="#"><iconify-icon
-                                                icon="solar:trash-bin-trash-bold" class="me-2"></iconify-icon>Delete</a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                        <h5 class="fw-bold text-dark-teal mb-1">Tabungan Jajan</h5>
-                        <h4 class="fw-bold text-dark mb-0">Rp 10.000.000</h4>
-                    </div>
-                </div>
 
                 <div class="col-12 col-md-6 col-lg-4">
                     <button
