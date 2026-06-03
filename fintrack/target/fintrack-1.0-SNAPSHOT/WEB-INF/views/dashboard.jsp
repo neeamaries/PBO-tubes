@@ -1,50 +1,102 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ page import="java.util.List" %>
-<%@ page import="com.fintrack.model.Transaction" %>
-<!DOCTYPE html>
-<html lang="id">
-<head>
-    <meta charset="UTF-8">
-    <title>Dashboard Fintrack</title>
-    <style>
-        table { width: 50%; border-collapse: collapse; margin-top: 20px; }
-        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
-        th { background-color: #f2f2f2; }
-        .Pemasukan { color: green; font-weight: bold; }
-        .Pengeluaran { color: red; font-weight: bold; }
-    </style>
-</head>
-<body>
+    <!DOCTYPE html>
+    <html lang="id">
 
-    <h2>FinTrack - Manajemen Keuangan</h2>
-    <p>Berikut adalah catatan keuangan kamu bulan ini (Simulasi MVC):</p>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="icon" type="image/png" href="${pageContext.request.contextPath}/images/favicon.png">
 
-    <table>
-        <thead>
-            <tr>
-                <th>Nama Transaksi</th>
-                <th>Nominal</th>
-                <th>Tipe</th>
-            </tr>
-        </thead>
-        <tbody>
-            <%
-                // Mengambil list dataSaku yang dikirim dari Servlet Controller
-                List<Transaction> list = (List<Transaction>) request.getAttribute("dataSaku");
-                if (list != null) {
-                    for (Transaction t : list) {
-            %>
-            <tr>
-                <td><%= t.getNama() %></td>
-                <td>Rp <%= String.format("%,.0f", t.getNominal()) %></td>
-                <td class="<%= t.getTipe() %>"><%= t.getTipe() %></td>
-            </tr>
-            <% 
-                    }
-                } 
-            %>
-        </tbody>
-    </table>
+        <title>Dashboard - FinTrack</title>
 
-</body>
-</html>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+        <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;600;700&display=swap"
+            rel="stylesheet">
+
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css?v=1">
+    </head>
+
+    <body>
+
+        <jsp:include page="navbar.jsp" />
+
+        <div class="dashboard-header">
+            <div class="container">
+                <div class="d-flex justify-content-between align-items-end">
+                    <div>
+                        <p class="mb-1 text-light-teal">Good Morning,</p>
+                        <h2 class="fw-bold mb-0 fs-1">Julio Tanlain</h2>
+                    </div>
+                    <div class="d-flex align-items-center gap-2">
+                        <button class="btn btn-date d-flex align-items-center gap-2">
+                            <iconify-icon icon="solar:calendar-bold-duotone" width="20"></iconify-icon>
+                            June 2026
+                            <iconify-icon icon="solar:alt-arrow-down-bold" width="16"></iconify-icon>
+                        </button>
+                        <button class="btn btn-date d-flex align-items-center gap-2">
+                            <iconify-icon icon="material-symbols:download" width="20"></iconify-icon>
+                            Export Data
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="container overlap-container mb-5">
+
+            <div class="row g-4 mb-4">
+
+                <div class="col-12 col-md-6 col-lg-3">
+                    <div class="card fintrack-card summary-card p-3">
+                        <div class="card-body">
+                            <h6 class="fw-bold text-dark">Card 1: Total Saldo<br>(Total Balance)</h6>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-12 col-md-6 col-lg-3">
+                    <div class="card fintrack-card summary-card p-3">
+                        <div class="card-body">
+                            <h6 class="fw-bold text-dark">Card 2: Pemasukan<br>Bulan Ini (Monthly Income)</h6>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-12 col-md-6 col-lg-3">
+                    <div class="card fintrack-card summary-card p-3">
+                        <div class="card-body">
+                            <h6 class="fw-bold text-dark">Card 3: Pengeluaran<br>Bulan Ini (Monthly Expense)</h6>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-12 col-md-6 col-lg-3">
+                    <div class="card fintrack-card summary-card p-3">
+                        <div class="card-body">
+                            <h6 class="fw-bold text-dark">Card 4: Sisa<br>Anggaran (Remaining Budget)</h6>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="row">
+                <div class="col-6">
+                    <div class="card fintrack-card activity-card p-4">
+                        <h6 class="fw-bold text-dark mb-4">Recent Activity</h6>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="card fintrack-card activity-card p-4">
+                        <h6 class="fw-bold text-dark mb-4">Statistic</h6>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </body>
+    <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    </html>

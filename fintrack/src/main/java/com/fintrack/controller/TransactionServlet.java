@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 // Import class Model yang kita buat tadi
 import com.fintrack.model.Transaction;
 
-@WebServlet("/dashboard")
+@WebServlet("/navbar")
 public class TransactionServlet extends HttpServlet {
 
     @Override
@@ -33,6 +33,6 @@ public class TransactionServlet extends HttpServlet {
         request.setAttribute("dataSaku", listTransaksi);
 
         // 3. OPER KE VIEW (JSP)
-        request.getRequestDispatcher("/WEB-INF/views/dashboard.jsp").forward(request, response);
+        request.getRequestDispatcher("/WEB-INF/views/navbar.jsp").forward(request, response);
     }
 }

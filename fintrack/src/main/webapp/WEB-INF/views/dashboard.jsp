@@ -1,4 +1,4 @@
-<!-- <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
     <!DOCTYPE html>
     <html lang="id">
 
@@ -99,51 +99,4 @@
     <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
-    </html> -->
-
-    <%@ page import="src.model.User" %>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
-
-<%
-    User user = (User) session.getAttribute("user");
-
-    if (user == null) {
-        response.sendRedirect(request.getContextPath() + "/login.jsp");
-        return;
-    }
-%>
-
-<!DOCTYPE html>
-<html lang="id">
-<head>
-    <meta charset="UTF-8">
-    <title>Dashboard - FinTrack</title>
-
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-</head>
-
-<body>
-    <div class="container mt-5">
-        <h1>Dashboard FinTrack</h1>
-
-        <div class="card mt-4">
-            <div class="card-body">
-                <h4>Selamat datang, <%= user.getUsername() %>!</h4>
-                <p>Email: <%= user.getEmail() %></p>
-                <p>User ID: <%= user.getUserID() %></p>
-
-                <a href="${pageContext.request.contextPath}/wallet.jsp" class="btn btn-primary">Wallet</a>
-                <a href="${pageContext.request.contextPath}/transaction.jsp" class="btn btn-success">Transaction</a>
-                <a href="${pageContext.request.contextPath}/profile.jsp" class="btn btn-secondary">Profile</a>
-
-                <hr>
-
-                <a href="${pageContext.request.contextPath}/auth?action=logout" class="btn btn-danger">
-                    Logout
-                </a>
-            </div>
-        </div>
-    </div>
-</body>
-</html>
+    </html>
